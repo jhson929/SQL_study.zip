@@ -1,1 +1,1 @@
-**/*.sql linguist-detectable=true
+Basic Select/**/*.sql linguist-detectable=true
