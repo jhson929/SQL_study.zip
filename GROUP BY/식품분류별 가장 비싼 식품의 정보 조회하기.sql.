@@ -1,0 +1,28 @@
+-- > 식품 분류별 비싼 식품
+-- 과자, 국, 김치, 식용유
+-- 식품 가격 desc
+WITH SUB AS (
+    SELECT CATEGORY
+          ,MAX(PRICE) AS MAX_PRICE
+    FROM FOOD_PRODUCT
+    WHERE CATEGORY IN ('과자', '국', '김치', '식용유')
+    GROUP BY CATEGORY
+)
+
+SELECT S.CATEGORY
+      ,S.MAX_PRICE
+      ,FP.PRODUCT_NAME
+FROM FOOD_PRODUCT FP
+    JOIN SUB S ON (FP.CATEGORY = S.CATEGORY AND FP.PRICE = S.MAX_PRICE)
+ORDER BY S.MAX_PRICE DESC
+
+-- 조금 더 간단하게
+SELECT CATEGORY
+      ,PRICE AS MAX_PRICE
+      ,PRODUCT_NAME
+FROM FOOD_PRODUCT
+WHERE (CATEGORY, PRICE) IN (SELECT CATEGORY, MAX(PRICE)
+                           FROM FOOD_PRODUCT
+                           GROUP BY CATEGORY
+                           HAVING CATEGORY IN ('과자', '국', '김치', '식용유'))
+ORDER BY MAX_PRICE DESC
