@@ -1,0 +1,22 @@
+-- > 사번, 성명, 평가등급, 성과금
+-- 사번 asc
+SELECT HE.EMP_NO
+      ,HE.EMP_NAME
+      ,CASE
+        WHEN ES.SCORE >= 96 THEN 'S'
+        WHEN ES.SCORE >= 90 THEN 'A'
+        WHEN ES.SCORE >= 80 THEN 'B'
+        ELSE 'C'
+       END AS GRADE
+      ,CASE
+        WHEN SCORE >= 96 THEN HE.SAL*0.2
+        WHEN SCORE >= 90 THEN HE.SAL*0.15
+        WHEN SCORE >= 80 THEN HE.SAL*0.1
+        ELSE HE.SAL*0
+       END AS BONUS
+FROM HR_EMPLOYEES AS HE
+    JOIN (SELECT EMP_NO, AVG(SCORE) AS SCORE
+          FROM HR_GRADE
+          GROUP BY EMP_NO) AS ES ON HE.EMP_NO = ES.EMP_NO
+ORDER BY HE.EMP_NO ASC
+
