@@ -1,0 +1,12 @@
+ -- > 2022년 10월 5일 중고거래 게시물 정보 출력
+ -- 거래상태에 따른 메시지 분류
+ -- ID DESC
+SELECT BOARD_ID, WRITER_ID, TITLE, PRICE
+      ,CASE
+        WHEN STATUS = 'SALE' THEN '판매중'
+        WHEN STATUS = 'RESERVED' THEN '예약중'
+        WHEN STATUS = 'DONE' THEN '거래완료'
+       END AS SATAUS      
+FROM USED_GOODS_BOARD
+WHERE CREATED_DATE = '2022-10-05'
+ORDER BY BOARD_ID DESC
