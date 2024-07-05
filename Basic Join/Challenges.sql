@@ -1,7 +1,7 @@
 -- 1. 내 코드
 WITH SUB AS (
     SELECT H.*
-                 ,CC.CHALLENGES_CREATED
+          ,CC.CHALLENGES_CREATED
     FROM HACKERS H
         JOIN (SELECT HACKER_ID
                                 ,COUNT(*) AS CHALLENGES_CREATED
