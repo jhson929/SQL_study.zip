@@ -4,9 +4,9 @@ WITH SUB AS (
           ,CC.CHALLENGES_CREATED
     FROM HACKERS H
         JOIN (SELECT HACKER_ID
-                                ,COUNT(*) AS CHALLENGES_CREATED
-                  FROM CHALLENGES
-                  GROUP BY HACKER_ID) CC ON H.HACKER_ID = CC.HACKER_ID
+                    ,COUNT(*) AS CHALLENGES_CREATED
+              FROM CHALLENGES
+              GROUP BY HACKER_ID) CC ON H.HACKER_ID = CC.HACKER_ID
 )
 
 SELECT *
