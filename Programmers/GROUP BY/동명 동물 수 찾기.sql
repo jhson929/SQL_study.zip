@@ -1,0 +1,10 @@
+-- > 이름 두 번 이상 쓰인 이름, 횟수
+-- 이름 없는 동물 제외
+-- 이름 ASC
+SELECT NAME
+      ,COUNT(*) AS CNTS
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+GROUP BY NAME
+HAVING CNTS >= 2
+ORDER BY NAME ASC
