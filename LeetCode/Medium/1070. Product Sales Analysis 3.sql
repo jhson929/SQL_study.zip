@@ -9,3 +9,6 @@ WHERE (product_id, year) IN (
     FROM Sales
     GROUP BY product_id
 )
+
+-- rank 윈도우 함수를 사용해서 해결할 수도 있음.
+-- rank() over (partition by product_id order by year) as rnk
